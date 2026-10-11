@@ -1,0 +1,29 @@
+@startuml
+actor "Warehouse Staff" as WH
+participant "Inventory Interface" as UI
+participant "Procurement Service" as PS
+participant "Database" as DB
+actor "Purchasing Staff" as PR
+actor "Finance" as FM
+
+WH -> UI: Klik "Buat Purchase Requisition"
+UI -> PS: Request PR Creation
+PS -> DB: Save PR Data
+DB --> PS: Success
+PS --> UI: Notifikasi "PR Berhasil Dibuat"
+PS -> PR: Notifikasi Ada PR Baru
+
+PR -> UI: Buka PR dan Pilih Vendor
+UI -> PS: Request Create PO
+PS -> DB: Save Draft PO
+PS -> FM: Minta Approval PO
+
+FM -> UI: Buka dan Review PO
+UI -> PS: Approve PO
+PS -> DB: Update Status PO = Approved
+DB --> PS: Success
+PS --> PR: Notifikasi PO Approved
+
+PR -> UI: Klik Kirim PO ke Vendor
+UI -> PS: Send Email to Vendor
+@enduml

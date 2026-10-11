@@ -1,0 +1,11 @@
+graph TD
+    A[Start] --> B[Login sebagai Admin]
+    B --> C[Masuk Dashboard Admin]
+    C --> D{Pilih Menu}
+    D --> E[Kelola Pengguna / Users]
+    D --> F[Kelola Role & Hak Akses]
+    D --> G[Pengaturan Sistem]
+    
+    E --> H[Tambah/Edit/Hapus Data Pengguna]
+    H --> I[Simpan ke Database]
+    I --> J[Selesai]

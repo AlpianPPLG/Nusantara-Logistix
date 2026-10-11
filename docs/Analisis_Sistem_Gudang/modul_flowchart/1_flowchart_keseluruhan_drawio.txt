@@ -1,0 +1,25 @@
+graph TD
+    A[Start] --> B(Login)
+    B --> C{Pilih Role?}
+    C -->|Admin| D[Kelola User & Pengaturan]
+    C -->|Warehouse| E[Manajemen Inventaris & Gudang]
+    C -->|Purchasing| F[Manajemen Pengadaan / Pembelian]
+    C -->|Finance| G[Persetujuan & Pembayaran]
+    
+    E --> H{Stok Menipis?}
+    H -->|Ya| I[Buat Purchase Requisition / PR]
+    H -->|Tidak| J[Penuhi Permintaan Internal/Penjualan]
+    
+    I --> K[Purchasing Menerima & Review PR]
+    K --> L[Buat Purchase Order / PO & Pilih Vendor]
+    L --> M[Kirim ke Finance]
+    
+    M --> N{Finance Approve?}
+    N -->|Disetujui| O[Kirim PO ke Vendor]
+    N -->|Ditolak| P[Revisi / Batal]
+    
+    O --> Q[Vendor Kirim Barang]
+    Q --> R[Warehouse Terima Barang & Input Goods Receipt]
+    R --> S[Stok Update Otomatis]
+    S --> T[Finance Lakukan 3-Way Match & Bayar Invoice]
+    T --> U[Selesai]

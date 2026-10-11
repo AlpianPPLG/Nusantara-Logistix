@@ -1,0 +1,19 @@
+@startuml
+|Vendor|
+start
+:Kirim Barang Fisik beserta Surat Jalan;
+
+|Warehouse Staff|
+:Terima Fisik Barang;
+:Buka Sistem, Cari Nomor PO;
+if (Barang dan Kuantitas sesuai dengan PO?) then (Ya)
+  :Catat Penerimaan Barang (Goods Receipt);
+  :Sistem Mengupdate Jumlah Stok (Otomatis);
+else (Tidak Sesuai)
+  :Catat Penolakan / Retur Barang;
+endif
+
+|Finance|
+:Menerima Notifikasi Penerimaan Barang Selesai;
+stop
+@enduml

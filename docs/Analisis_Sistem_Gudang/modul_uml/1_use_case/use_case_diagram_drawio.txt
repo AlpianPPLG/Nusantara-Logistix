@@ -1,0 +1,46 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Warehouse Staff" as WH
+actor "Purchasing Staff" as PR
+actor "Finance / Manager" as FM
+actor "System Admin" as AD
+
+package "E-Procurement dan Inventory Management System" {
+  usecase "Melakukan Login" as UC1
+  
+  usecase "Input Penerimaan Barang (GR)" as UC2
+  usecase "Proses Stock Opname" as UC3
+  usecase "Buat Purchase Requisition (PR)" as UC4
+  
+  usecase "Review PR dan Pilih Vendor" as UC5
+  usecase "Buat Purchase Order (PO)" as UC6
+  usecase "Kelola Database Vendor" as UC7
+  
+  usecase "Approve Dokumen PO" as UC8
+  usecase "Proses Pembayaran dan 3-Way Match" as UC9
+  
+  usecase "Kelola Akun Pengguna" as UC10
+  usecase "Kelola Konfigurasi Sistem" as UC11
+}
+
+WH --> UC1
+PR --> UC1
+FM --> UC1
+AD --> UC1
+
+WH --> UC2
+WH --> UC3
+WH --> UC4
+
+PR --> UC5
+PR --> UC6
+PR --> UC7
+
+FM --> UC8
+FM --> UC9
+
+AD --> UC10
+AD --> UC11
+@enduml

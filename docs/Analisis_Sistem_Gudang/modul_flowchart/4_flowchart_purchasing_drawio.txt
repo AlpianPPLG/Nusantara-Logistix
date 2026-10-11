@@ -1,0 +1,12 @@
+graph TD
+    A[Start] --> B[Login sebagai Purchasing]
+    B --> C[Dashboard Procurement]
+    C --> D{Pilih Aktivitas}
+    D --> E[Review Permintaan PR dari Gudang]
+    D --> F[Kelola Data Vendor]
+    
+    E --> G[Pilih Vendor & Negosiasi Harga]
+    G --> H[Buat Purchase Order PO]
+    H --> I[Ajukan PO ke Finance untuk Approval]
+    
+    F --> J[Tambah/Edit Vendor & Evaluasi Performa]

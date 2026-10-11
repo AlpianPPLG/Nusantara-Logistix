@@ -1,0 +1,32 @@
+@startuml
+|Warehouse Staff|
+start
+:Cek Stok Gudang;
+if (Stok berada di bawah batas minimum?) then (Ya)
+  :Buat Purchase Requisition (PR) ke Sistem;
+else (Tidak)
+  stop
+endif
+
+|Purchasing Staff|
+:Terima Notifikasi PR Baru;
+:Pilih Vendor yang Sesuai;
+:Buat Draft Purchase Order (PO);
+:Kirim PO untuk Approval;
+
+|Finance / Manager|
+:Review Draft PO dan Ketersediaan Anggaran;
+if (Setuju?) then (Ya)
+  :Approve PO;
+  
+  |Purchasing Staff|
+  :Kirim Dokumen PO Resmi ke Vendor;
+else (Tidak)
+  |Finance / Manager|
+  :Reject PO dan Beri Catatan;
+  
+  |Purchasing Staff|
+  :Revisi PO sesuai Catatan;
+endif
+stop
+@enduml

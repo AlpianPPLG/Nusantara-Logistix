@@ -1,0 +1,17 @@
+graph TD
+    A[Start] --> B[Login sebagai Finance/Manager]
+    B --> C[Dashboard Finance]
+    C --> D{Pilih Aktivitas}
+    D --> E[Approval PO]
+    D --> F[Proses Pembayaran Invoice]
+    
+    E --> G[Cek Anggaran / Budget]
+    G --> H{Sesuai Anggaran?}
+    H -->|Ya| I[Approve PO & Notifikasi ke Purchasing]
+    H -->|Tidak| J[Reject / Minta Revisi]
+    
+    F --> K[Terima Tagihan Vendor]
+    K --> L[3-Way Match: Cek Tagihan vs PO vs Goods Receipt]
+    L --> M{Match / Cocok?}
+    M -->|Ya| N[Proses Pembayaran & Tutup Buku]
+    M -->|Tidak| O[Tunda Pembayaran & Investigasi Selisih]

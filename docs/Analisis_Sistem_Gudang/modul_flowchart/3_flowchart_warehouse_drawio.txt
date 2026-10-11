@@ -1,0 +1,21 @@
+graph TD
+    A[Start] --> B[Login sebagai Warehouse]
+    B --> C[Masuk Dashboard Gudang]
+    C --> D{Pilih Aktivitas}
+    D --> E[Barang Masuk / Inbound]
+    D --> F[Barang Keluar / Outbound]
+    D --> G[Stock Opname]
+    
+    E --> H[Cek Surat Jalan Vendor & PO Sistem]
+    H --> I{Apakah Sesuai?}
+    I -->|Ya| J[Input Goods Receipt GR & Update Stok]
+    I -->|Tidak| K[Buat Catatan Retur / Tolak Penerimaan]
+    
+    F --> L[Scan Barcode / Kurangi Stok]
+    L --> M[Update Database Stok]
+    
+    G --> N[Hitung Fisik Barang]
+    N --> O{Ada Selisih?}
+    O -->|Ya| P[Catat Selisih & Alasan Penyesuaian]
+    O -->|Tidak| Q[Selesaikan Opname]
+    P --> Q

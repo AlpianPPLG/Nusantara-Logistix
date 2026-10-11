@@ -1,0 +1,72 @@
+@startuml
+class User {
+  +user_id: int
+  +username: string
+  +password_hash: string
+  +role: string
+  +last_login: datetime
+  +login()
+  +logout()
+}
+
+class Product {
+  +product_id: int
+  +sku_code: string
+  +name: string
+  +category: string
+  +unit_price: decimal
+}
+
+class Inventory {
+  +inventory_id: int
+  +product_id: int
+  +warehouse_location: string
+  +current_quantity: int
+  +minimum_stock: int
+  +updateStock(qty: int)
+  +checkLowStock() : boolean
+}
+
+class Vendor {
+  +vendor_id: int
+  +company_name: string
+  +contact_email: string
+  +address: string
+  +performance_rating: float
+}
+
+class PurchaseRequisition {
+  +pr_id: int
+  +request_date: datetime
+  +status: string
+  +requested_by: int
+  +createRequisition()
+}
+
+class PurchaseOrder {
+  +po_id: int
+  +pr_id: int
+  +vendor_id: int
+  +total_amount: decimal
+  +status: string
+  +approve()
+  +sendToVendor()
+}
+
+class GoodsReceipt {
+  +gr_id: int
+  +po_id: int
+  +received_date: datetime
+  +received_by: int
+  +notes: string
+  +processReceipt()
+}
+
+User "1" -- "0..*" PurchaseRequisition : membuat >
+User "1" -- "0..*" PurchaseOrder : memproses >
+Product "1" -- "1" Inventory : memiliki data >
+PurchaseRequisition "1" -- "1..*" PurchaseOrder : dikonversi menjadi >
+Vendor "1" -- "0..*" PurchaseOrder : ditujukan ke >
+PurchaseOrder "1" -- "0..*" GoodsReceipt : menghasilkan >
+GoodsReceipt "1" -- "1..*" Inventory : menambah >
+@enduml

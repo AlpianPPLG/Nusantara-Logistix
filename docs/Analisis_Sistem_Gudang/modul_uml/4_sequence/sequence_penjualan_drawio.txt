@@ -1,0 +1,26 @@
+@startuml
+actor "Sales / Internal User" as SA
+participant "Order System" as OS
+participant "Inventory Interface" as UI
+actor "Warehouse Staff" as WH
+participant "Database" as DB
+actor "Finance" as FM
+
+SA -> OS: Input Sales Order (SO) / Permintaan Barang Keluar
+OS -> DB: Cek Ketersediaan Stok
+DB --> OS: Stok Tersedia
+OS -> UI: Terbitkan Dokumen Pengeluaran (Delivery Order / DO)
+
+WH -> UI: Lihat Daftar Pesanan (DO) Baru
+UI -> DB: Ambil Data DO
+DB --> UI: Tampilkan Detail Barang
+WH -> WH: Siapkan Fisik Barang (Picking & Packing)
+
+WH -> UI: Konfirmasi Barang Keluar (Goods Issue)
+UI -> DB: Kurangi Stok (Update Inventory)
+DB --> UI: Stok Berhasil Diupdate
+UI -> OS: Update Status Pesanan (Shipped/Selesai)
+
+OS -> FM: Notifikasi Penagihan (Invoice)
+FM -> SA: Terbitkan Invoice ke Pelanggan
+@enduml
